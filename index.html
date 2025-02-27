@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="My portfolio showcasing my projects, contact details, and video demo.">
+    <title>My Portfolio</title>
+    <style>
+        /* The General Styles of information i will be inserting on my website page */
+        body {
+            font-family: Arial, sans-serif; /*  I Setted the font for the body of my code,meaning the text Styles i want the bio to look like */
+            line-height: 1.6;
+            margin: 0; /* I have my margin to 0 because the <body> will start at the very edge of the browser window, with no extra space around it. */
+            padding: 0; /* I also had to Remove the default padding around the body othewise it will go over and over */
+            background-color: #f4f4f4;  /* I Setted  a light grey background colour for my contact page */
+            transition: background-color 0.5s ease-in-out; /*After setting colour to light grey i had insert a the Smooth transition for background colour changes,so it will Excutes my code when is running */
+        }
+
+        /* I used this Grid Layout cuz is look professional and catchy,i got it from the presentaion slides in class */
+        main {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            padding: 120px 20px 20px;
+        }
+
+       /* My Header will be having these styles and colours on the whole website */
+        header {
+            background-color: #333; /* I added dark background colour for the header */
+            color: #fff;  /*  Then inserted White text colour so it looks appealing to users */
+            padding: 1rem 20px;  /* Afterthat I added a padding around the header content */
+            position: fixed; /* Then i decided to fix the header at the top of my page */
+            width: 100%;
+            top: 0;   /* The Zero i have here Positions the header at the top of the viewport */
+            z-index: 1000;  /* Then  Ensures the header stays above other elements so it get moduled up with other information i have in my website */
+            display: flex; /* My structre layout is based on this so it Vertically aligns the header items */
+            justify-content: space-between;
+            align-items: center;  /* then Later Vertically aligns with the header items */
+        }
+
+        
+
+        /* My Navigation Bar in wesbsite is based on this code */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 20px;
+            margin: 10px;
+            align-items: center;
+            width: 100%;
+
+        }
+        
+
+        /* I used this code cuz is going aligned my Name on the left side in the website instead of a logo */
+        .nav-left {
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+        }
+
+         /* 
+      nav-right:
+      - The UL is positioned  on mobile as a slide-out menu.
+      - On desktop, it stays inline so it doesnt overlap the navigation bar (to the right).
+    */
+       .nav-right ul {
+          display: flex;
+          list-style: none;
+          gap: 20px;
+          margin: 0;
+          padding: 0;
+        }
+       .nav-right ul li {
+         list-style: none;
+         }
+      .nav-right ul li a {
+      text-decoration: none;
+      color: white;
+      font-size: 16px;
+      transition: color 0.3s ease-in-out;
+         }
+      .nav-right ul li a:hover {
+      color: #f4a261;
+        }
+        /* 
+      I added an extra "Close" item as the FIRST list item, so is going help users to navigate easily without overlaping. 
+      it will also be shown only in mobile view (overlay).
+    */
+    .nav-right ul li.close-menu {
+      display: none; /* hidden on desktop so it doesnt look messy */
+    }
+
+    /* 
+      Hamburger Icon (on the right).
+      Hidden by default on desktop, shown on mobile.
+    */
+        #menu-toggle {
+           display: none;
+           cursor: pointer;
+           font-size: 1.8rem;
+           color: #fff;
+           background: none;
+           border: none;
+       }
+
+        /* I used this code to give my website Section Styles */
+        section {
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 8px;  /* and Applied rounded corners with a border-radius of 8px to make to look professional.*/
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);   /* I Added a subtle box-shadow for a slight elevation effect. */
+            margin-bottom: 30px;   /* then i added this to Provide a bottom margin to separate sections. */
+        }
+
+        /* There are the codes for my Footer */
+        footer {
+            text-align: center;
+            padding: 30px; /* I used padding in some part of my codes,to give spacing on the website */
+            background-color: #333;
+            color: white;
+            margin-top: 30px;
+        }
+
+        /* Social Media Links */
+        .social-links {
+            display: flex;
+            justify-content: center; /* I Aligned all the list items to the center so make to look clean & Tidy */
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.1);
+        }
+
+        .social-links img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* . Contact Section */
+        .contact-container {
+            max-width: 700px;
+            margin: 120px auto 50px;
+            padding: 30px;
+            background: white;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 28px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        /* . Buttons */
+        .contact-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            background-color: #333;/* My button background color i used whiles coding*/
+            color: white;
+            border: none;
+            padding: 12px 15px;
+            cursor: pointer; /* It Changes cursor to pointer when hovering over the button */
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out; /* Allow me or users to have a Smooth transitions for colour and scale changes when it being click on */
+            flex: 1 1 calc(50% - 10px);  /* Makes the button take up half the available space on my contact page */
+            max-width: 200px;
+            text-align: center;
+        }
+
+        .btn:hover { /* Changes button background color on hover and Slightly scales the button when hovered on*/
+            background-color: #333;
+            transform: scale(1.05);
+        }
+
+       /* The Forms in my  pages will be using this format,so i will know if the Layout ,Space between, Space above and Stacks form elements are vertically or space out or not !  */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px; /* The space inside an element, between the content of the element and its border,the space i have given them ,making it look professional */ 
+        }
+
+        input,
+        textarea { /* I will be adjusting the borders of my wesbite there ,because i choose and change the size i want it to be */
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            transition: border-color 0.3s ease-in-out;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #333; /*  The colour i used for my borders */
+            outline: none;
+            box-shadow: 0 0 10px rgba(42, 157, 143, 0.4);
+            transform: scale(1.05);
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group {
+            /* <-- I used this code for Contact Form Input Labels so my labels remain clear and readable to users.*/
+            position: relative;
+            text-align: left; /* My pages Footer was to coded in thi format ,for the test  to be align in the center,Background colour white and Darkish Brown */
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+
+        .form-group input:focus+label,
+        .form-group textarea:focus+label {
+            top: -5px;
+            font-size: 12px;
+            color: #333;
+        }
+
+        /* <-- Closing curly brace added here */
+
+        /*This my Page css title syles i used when making my website */
+        .page-title {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .intro-text {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        /* Projects Grid */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        /* Project Cards */
+        .project-item {
+            background-color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .project-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-item img {
+            width: 100%;  /*  I had 50% befroe then i change to 100% pixels because it was hard to see */
+            max-width: 300px; /* Prevents images from getting too large */
+            height: 200px; /* Ensures uniform height */
+            object-fit: cover; /* Prevents image distortion */
+            border-radius: 5px;
+            display: block;
+    margin: 0 auto; /* Centers images */
+            
+        }
+
+        .project-item h3 {
+            color: #333;
+            margin: 10px 0;  /* I added space above the content inside the element so in this case 10px of space inside the div on all sides (top, right, bottom, left.*/
+        }
+
+        .project-item p {
+            color: #666;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            margin-top: 10px; /*  I added 10 percent pixel space for the Buttons layout to make it look professional */
+            padding: 10px 15px;
+            background: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #333;
+        }
+
+        /* ----------------- 
+       RESPONSIVE 
+       NAV OVERLAY
+    ------------------ */
+    @media (max-width: 768px) { /* When i want view my contact page on the Mobile phone or other device,having width to 768px will make it Responsive for small devices etc. */
+      /* Show hamburger icon, hide normal nav by default */
+      #menu-toggle {
+        display: block;
+      }
+
+      /* I Turned the UL into a slide-out overlay from the right */
+      .nav-right ul {  /* I added the navigation Menu for Mobile Screens so when the user is using a mobile they will be able to view my website */
+        display: flex;   /* Without going out my website page otherwise users will lose interest in my website */
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background: #333;
+        padding: 20px;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 9999; /* above everything */
+      }
+      .nav-right ul.active {
+        transform: translateX(0);
+      }
+
+      /* The first LI is "Close", shown at the top */
+      .nav-right ul li.close-menu {
+        display: block;
+        margin-bottom: 20px;
+        text-align: right;
+      }
+      .nav-right ul li a {
+        font-size: 18px;
+        color: #fff;
+      }
+    }
+
+        /* This my css code for my Image Container (so they in Logos in a Row) */
+        .images-container {
+            display: flex;
+            justify-content: center;
+            /* I added Centers images horizontally */
+            align-items: center;
+            /* then move to Aligning my images vertically */
+            gap: 20px;
+            /* then later Added spacing between images */
+            margin-top: 30px;
+        }
+
+        .images-container img {
+            width: 100px;
+            /* I Adjusted my size of images so it makes it look profressional */
+            height: auto;
+            /* then i  Maintained the aspect ratio */
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Sir told us to be creative ,so i used this format  to Hover my pictures effect content */
+        .images-container img:hover {
+            transform: scale(1.1);
+        }
+
+        #video-demo {
+            text-align: center;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 30px auto;
+            max-width: 800px;
+            /* After hovwering my images i decided to add a bit of animation to my video Demo,Before implemting that i Adjusted max width for a more uniform layout */
+        }
+
+        #video-demo iframe {
+            width: 100%;
+            max-width: 720px;
+            /* I  Adjusted my video width also, */
+            height: 405px;
+            /* And Maintained the 16:9 aspect ratio */
+            border: none;
+            display: block;
+            margin: 0 auto;
+
+        }
+        .my-image {
+          max-width:100% ;
+          height: auto;
+         }
+         
+
+
+            
+    </style>
+
+ <!-- My HEADER in the website is laid this format-->
+ <header>
+    <nav>
+      <!-- Name on the left on the page-->
+      <div class="nav-left">Robert Sarpong Amofah</div>
+
+      <!-- Right-Aligned Navigation -->
+      <div class="nav-right">
+        <ul id="nav-menu">
+          <!-- CLOSE item: visible only on mobile overlay -->
+          <li class="close-menu">
+            <a href="javascript:void(0)" id="close-menu-link">Close</a>
+          </li>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#video-demo">Video Demo</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#sitereport">Site Report</a></li>
+        </ul>
+      </div>
+
+      <!-- Hamburger Icon on the right of my website -->
+      <button id="menu-toggle">&#9776;</button>
+    </nav>
+  </header>
+
+
+    <div class="menu-toggle">&#9776;</div>
+
+    <main>
+        <section id="home">
+            <h2>Welcome to My Portfolio</h2>
+            <p>Hi, I am Robby Amofah, a second-year Foundation Software Engineering student passionate about web development.</p>
+            <p>I am currently a second-year Software Engineering student who is enthusiastic about learning and
+                mastering new technologies. In our second semester, we were given the opportunity to explore JavaScript,
+                CSS, and HTML, which captivated my interest and creativity. I am taking advantage of this opportunity to
+                extend my knowledge, improve my coding skills, and create significant projects that will prepare me for
+                real-world employment opportunities.</p>
+            <div class="images-container">
+
+                <img src="HTML.png" alt="HTML Logo">
+                <img src="CSS.png" alt="CSS Logo">
+                <img src="JavaScript.png" alt="JavaScript Logo">
+
+            </div>
+
+        </section>
+
+        <section class="fade-in">
+            <h2>My Learning Journey</h2>
+            <p>From the moment I started studying software engineering, I knew I wanted to focus on web development. The
+                ability to create interactive, user-friendly websites and applications interests me, and I am constantly
+                looking for methods to enhance my coding efficiency, visual appeal, and problem-solving abilities.</p>
+        </section>
+
+        <p>Before starting any project, I follow a structured approach based on the assignment requirements:</p>
+        <ul>
+            <li>Planning and research: Identifying project requirements and investigating best practices.</li> 
+            <li>Design and Development: Writing clean, maintainable code with an emphasis on user experience.</li>
+            <li>Testing and Debugging: Ensure that the project is completely functioning and optimal.</li>
+            <li>Deployment & Review: Making the project live and learning from feedback.</li>
+
+        </ul>
+        <section>
+        <p>To keep my work organised, I created a separate file named <strong>"2425 — Web Development
+                (CSY1063-SUN-S2)"</strong>, where I document my progress, challenges, and achievements throughout this
+            semester.</p>
+
+        </section>
+
+        <section class="fade-in">
+            <h2>What You'll Find Here</h2>
+            <p>This portfolio demonstrates the web development projects I worked on throughout my CSY1063 | Web
+                Development curriculum. Throughout this course, I've used HTML, CSS, and Git/GitHub to create
+                interactive, responsive web sites that adapt easily to various screen sizes and devices.</p>
+        </section>
+
+        <section>
+        <p>Key aspects of my work include:</p>
+        <ul>
+            <li>Responsive Design: Ensuring web pages scale effectively across various displays.</li>
+            <li>User Experience & Interface Design: Creating visually appealing and user-friendly interfaces.</li>
+            <li>Version Control with Git/GitHub:Managing project files efficiently using Git for collaboration and
+                tracking changes.</li>
+            <li>Interactive Features: Implementing basic JavaScript to enhance user interaction.</li>
+            <li>Code Optimisation & Best Practices:Writing clean, maintainable code following contemporary web
+                standards.</li>
+        </ul>
+       </section>
+
+        <section class="fade-in">
+            <h2>Let's Connect!</h2>
+            <p>I appreciate you taking the time to explore my work. If you have any feedback, questions, or
+                collaboration opportunities, feel free to reach out through my <a
+                    href="https://outlook.live.com/mail/0/?nlp=1&cobrandid=ab0455a0-8d03-46b9-b18b-df2f57b9e44c&deeplink=owa%2f&RpsCsrfState=cb314b95-f038-39d8-56be-bd2d2206720d&url=%2fowa%2f0%2f%3fnlp%253d1%2526cobrandid%253dab0455a0-8d03-46b9-b18b-df2f57b9e44c%2526deeplink%253dowa%25252f%2526RpsCsrfState%253dcb314b95-f038-39d8-56be-bd2d2206720d">contact
+                    page</a>. I'm always eager to connect with like-minded individuals and learn from new experiences.
+            </p>
+        </section>
+         <section>
+        <p>🚀 Stay tuned for more updates as I grow in my web development journey!</p>
+        </section>
+
+        <section id="projects">
+            <h2>Projects</h2>
+            <p class="intro-text">Here are some of the projects I've worked on, showcasing my skills in web development.
+            </p>
+        </section>
+
+        <div class="projects-container">
+            <div class="project-item">
+                <img src="Silver Surfers.png" alt="Project 1">
+                <h3>Project 1</h3>
+                <p>Dynamic Web Application using JavaScript & React.</p>
+                <a href="https://yourprojectlink.com" class="btn" target="_blank">View on GitHub</a>
+            </div>
+
+            <div class="project-item">
+                <img src="Angelo Carter's Art Gallery.png" alt="Project 2">
+                <h3>Project 2</h3>
+                <p>Responsive Portfolio Website built with HTML, CSS, and JS.</p>
+                <a href="https://yourprojectlink.com" class="btn" target="_blank">Live Demo</a>
+            </div>
+
+            <div class="project-item">
+                <img src="Carter Gallery.png" alt="Project 3">
+                <h3>Project 3</h3>
+                <p>Data Visualization Dashboard using Python & Flask.</p>
+                <a href="https://www.youtube.com/watch?v=SLftzEqoLPk&list=PLU7aW4OZeUzwn6L1txXQ9viaAIR2mDqbv"
+                    class="btn" target="_blank">View Code</a>
+            </div>
+
+            <div class="project-item">
+                <img src="E-commerce Platform with Payment Integration.png" alt="Project 4">
+                <h3>Project 4</h3>
+                <p>E-commerce Platform with Payment Integration.</p>
+                <a href="https://yourprojectlink.com" class="btn" target="_blank">Explore</a>
+            </div>
+        </div>
+    </main>
+
+    <section id="project-1" class="project">
+        <h2>Dynamic Web Application using JavaScript & React</h2>
+        <div class="project-content">
+            <div class="project-image">
+                <img src="Silver Surfers.png" alt="Dynamic Web Application screenshot" class="my-image">
+
+            </div>
+            <div class="project-description">
+                <p>This is an evolving, simple to use and user-centred online application that I developed as part of my Level 3 college curriculum. It was created to meet the special needs of older folks, allowing them to learn critical digital skills via a simple, accessible, and entertaining online platform. The app uses modern web development technologies such as JavaScript, CSS, HTML, and React to provide a smooth, interactive experience.
+
+                    The primary goal of this application is to help elderly people get more comfortable with technology by providing simple computer training classes. Many elderly persons experience issues with technology, either owing to a lack of exposure or a fear of utilising electronics. This web tool is designed to fill the gap by providing a helpful and non-intimidating environment.</p>
+
+                <div class="project-links">
+                    <a href="https://github.com/yourusername/dynamic-web-app" target="_blank" class="btn">View on
+                        GitHub</a>
+                    <a href="https://yourliveapp.com" target="_blank" class="btn">Live Demo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="project-2" class="project">
+        <h2>Responsive Portfolio Website built with HTML, CSS, and JS</h2>
+        <div class="project-content">
+            <div class="project-image">
+                <img src="Angelo Carter's Art Gallery.png" alt="Responsive Portfolio Website screenshot" class="my-image">
+            </div>
+            <div class="project-description">
+                <p>This is a thorough and interactive portfolio website that I created as part of my Level 2 college study. The website is dedicated to Angelo Carter's Art Gallery, a platform that showcases the work and journey of Angelo Carter, an accomplished East End-born artist with a long history of painting and drawing.
+                
+                Angelo Carter's artistic roots stem from an early exposure to art, which was influenced by his self-taught mother, who also painted. Angelo, like his mother, uses a range of mediums, but he prefers watercolour to capture the delicate nuances and vivid tones for which he is recognised. His work is inspired by legendary artists such as Lord Leighton, L.S. Lowry, and the Impressionists. The portfolio website is intended to be a completely responsive, interactive online platform showcasing Angelo's artwork and personal story. Built with HTML, CSS, and JavaScript, the site not only displays a wide spectrum of his artwork, but it also provides an interesting user experience with fluid animations and interactive elements.</P>
+
+                <div class="project-links">
+                    <a href="https://github.com/yourusername/portfolio-website" target="_blank" class="btn">View Code on
+                        GitHub</a>
+                    <a href="https://yourliveportfolio.com" target="_blank" class="btn">Live Demo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="project-3" class="project">
+        <h2>Data Visualisation Dashboard using Python & Flask</h2>
+        <div class="project-content">
+            <div class="project-image">
+                    <img src="Carter Gallery.png" alt="Data Visualisation Dashboard screenshot" class="my-image">
+            </div>
+            <div class="project-description">
+                <p>This dashboard, was created during my Level 3 Year 2 Coursework in college, intends to be a simple, user-friendly tool for data analysis and visualisation. The project's purpose is to make data exploration accessible to a wide range of users, from students to professionals, by allowing people to engage with and get insights from datasets without having sophisticated technical knowledge. Designed with simplicity in mind, the dashboard enables users to analyse data patterns and trends, allowing them to make informed decisions in today's data-driven environment.</p>
+                <div class="project-links">
+                    <a href="https://github.com/yourusername/data-visualisation-dashboard" target="_blank"
+                        class="btn">View Code</a>
+                    <a href="https://yourliveapp.com" target="_blank" class="btn">View Live Demo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="project-4" class="project">
+        <h2>E-commerce Platform with Payment Integration</h2>
+        <div class="project-content">
+            <div class="project-image">
+                <img src="E-commerce Platform with Payment Integration.png" alt="E-commerce Platform screenshot" class="my-image">
+            </div>
+            <div class="project-description">
+                <p>This project is an e-commerce platform with integrated payment gateways like PayPal and Stripe. Users
+                    can browse products, add them to their cart, and securely complete their transactions. The platform
+                    includes features like product search, shopping cart, and order management.</p>
+                <div class="project-links">
+                    <a href="https://github.com/yourusername/e-commerce-platform" target="_blank" class="btn">Explore
+                        Code</a>
+                    <a href="https://yourliveapp.com" target="_blank" class="btn">Explore Live Demo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="video-demo">
+        <h2>Video Demonstration</h2>
+        <iframe src="https://www.youtube.com/embed/your-video-id" allowfullscreen></iframe>
+    </section>
+
+    <section id="contact">
+        <div class="contact-container">
+            <h1>Contact Me</h1>
+            <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+            <p>Phone: +1234567890</p>
+
+            <div class="contact-buttons">
+                <button class="btn" onclick="location.href='customerService.html'">Customer Service</button>
+                <button class="btn" onclick="location.href='paymentIssues.html'">Payment Issues</button>
+                <button class="btn" onclick="location.href='accountSettings.html'">Account Settings</button>
+                <button class="btn" onclick="location.href='returnsRefunds.html'">Returns & Refunds</button>
+                <button class="btn" onclick="location.href='technicalSupport.html'">Technical Support</button>
+            </div>
+
+            <form action="mailto:your.email@example.com?subject=Contact%20Form&body=Your%20Message" method="post" enctype="text/plain">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="sitereport">
+
+        <section>
+            <h2>Reflection Report on Web Development Journey</h2>
+        </section>
+        <h2>Introduction</h2>
+        <p> My journey in web development has been both challenging and rewarding. Initially, I had a basic
+            understanding of HTML and CSS, but this project pushed me to apply my knowledge in a structured way while
+            also exploring Git/GitHub for version control. Throughout the development of my portfolio website, I
+            encountered several challenges, particularly in designing a responsive layout, debugging CSS issues, and
+            managing my project files effectively using Git/GitHub. However, these obstacles became valuable learning
+            experiences that improved my problem-solving skills and reinforced my understanding of front-end web
+            development. </p>
+
+        <h2>Challenges Faced & Solutions Implemented and how I Implemented HTML & CSS for Responsive Web Design</h2>
+        
+        <p>One of the most difficult issues I had was ensuring that my website responded correctly to various screen sizes. Initially, the layout appeared to be broken on smaller displays, with parts overlapping or misplaced. Navigation links were difficult to find on mobile devices, photos did not resize properly, and certain areas of text were either too large or too small, making it difficult to read.
+
+            To overcome these challenges, I used CSS Grid and Flexbox to build a more structured and adaptable layout. CSS Grid enabled me to create flexible column and row structures, allowing different areas of the website to be changed automatically based on screen width. Flexbox was especially useful for aligning things within containers, making sure that elements like buttons, pictures,and text blocks remained properly positioned across different resolutions.
+        
+            In addition, I utilised media queries to customise the design for different device sizes. Setting breakpoints at popular screen dimensions (e.g., max-width: 1024px for tablets and max-width: 768px for mobile phones) allowed me to change font sizes, paddings, and margins, and even reorganise the layout as needed. To improve readability and user experience, I reduced multi-column parts to a single-column format on smaller screen sizes.
+
+            To evaluate responsiveness, I used browser developer tools like Chrome DevTools, which allowed me to see how the site would appear on various screen sizes. By finding variations and applying real-time CSS tweaks, I was able to iterate and improve the layout.
+            
+            All these strategies enabled me to create a fully flexible and adaptable design that provides an easy browsing experience on computers, tablets, and mobile devices. Users may now quickly explore the website, since all elements adjust to their screen size without distortion or layout concerns. </p>
+        <h2> Experimenting & Adding Interactive Features</h2>
+        <p>During our lab sessions, our instructor encouraged us to experiment with various HTML and CSS properties to better understand their impact. I took this method by adding an icon button on the right side of my page. The icon was initially misplaced, appearing in the middle and then half concealed at the screen's edge. After viewing tutorial videos and reading material, I used CSS positioning techniques (absolute and relative positioning) to make it responsive to multiple devices.</p>
+
+        <h2>Debugging CSS & UI Consistency</h2>
+        <p>Another problem was making sure my website appeared visually appealing and consistent across all browsers. There were issues with margins, padding, and font sizes, resulting in misaligned parts. I used browser developer tools to evaluate items and detect stylistic problems. In addition, I also used web tools such as MDN Web Docs and W3Schools to properly resolve CSS difficulties.</p>
+
+        <h2>Managing Files & Version Control with Git/GitHub</h2>
+       <P> At first, I struggled with managing my project files efficiently and keeping track of changes. Committing frequently and using Git branches helped me work on different features without breaking the main project. By posting updates to GitHub on a regular basis, I was able to keep my project organised and track my progress more effectively.</P>
+
+        <h2>Changemaker & Employability Skills</h2>
+        <p>This project helped me improve my critical thinking and problem-solving abilities, particularly while fixing errors and enhancing my design. It also emphasised the significance of attention to detail, particularly when developing clean and maintainable code. Furthermore, working with peers and seeking feedback improved my ability to analyse my work and make informed design decisions.</p>
+
+        <h2>Design Decisions & Inspiration</h2>
+       <p>I aimed for a modern, clean style to ensure readability and usage. My colour scheme was influenced by minimalist site designs that value simplicity and user experience. I referred to Dribbble and Behance for UI/UX inspiration and incorporated interactive elements, such as hover effects, to  increase user engagement. The fonts were selected for clarity and accessibility, ensuring a professional appearance.</p>
+
+        <h2>Validation Reports & Testing</h2>
+        <p>To ensure my code met assignment requirements standards, I validated my HTML and CSS using W3C validation tools. Screenshots
+            of the validation reports are included in this document, demonstrating that my code is error-free and
+            follows best practices.</p>
+
+        <h2>Conclusion</h2>
+        <p>This project was an excellent educational opportunity that helped me improve my knowledge of HTML, CSS,JAVASCRIPT and Git/GitHub management. The problems I had, such as troubleshooting layout flaws and guaranteeing responsiveness, taught me crucial problem-solving abilities that would be useful in future web development projects. I successfully constructed a functioning and responsive portfolio website by experimenting with coding, incorporating input from my instructor and classmates, and utilising available resources.
+        This assignment has substantially increased my confidence in web programming, and I now feel more prepared to take on larger tasks. Moving forward, I are interested in broadening my skills by learning JavaScript and researching advanced CSS techniques to improve interactivity and user experience. Overall, this project has confirmed my interest in web development, and I am forward to continue growing in this field.</p>
+
+        <h2>Refrence</h2>
+
+        <P>Code with Faraz - Best Front-End Components and Blogs. (2023). 10+ eCommerce Websites with HTML, CSS, and JavaScript. [online] Available at: https://www.codewithfaraz.com/article/101/10-ecommerce-websites-with-html-css-and-javascript.[Accessed 10 Mar. 2025].</P>
+
+        <P>Coyier, C. (2018). A Complete Guide to Flexbox | CSS-Tricks. [online] CSS-Tricks. Available at: https://css-tricks.com/snippets/css/a-guide-to-flexbox/. [Accessed 14 Feb. 2025].</P>
+        <P>CSS-Tricks. (2020). Gap | CSS-Tricks. [online] Available at: https://css-tricks.com/almanac/properties/g/gap/ [Accessed 23 Feb. 2025].</P>  
+        <P>CSS-Tricks. (2020). Gap | CSS-Tricks. [online] Available at: https://css-tricks.com/almanac/properties/g/gap/ [Accessed 23 Feb. 2025].</P>
+        <P>dan (2014). CSS Media Queries for the Divi Theme - Divi Booster. [online] Divi Booster. Available at: https://divibooster.com/css-media-queries-for-the-divi-theme/ [Accessed 23 Feb. 2025].</P>
+        <P>developer.mozilla.org. (n.d.). Aligning items in a flex container - CSS: Cascading Style Sheets | MDN. [online] Available at: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Aligning_Items_in_a_Flex_Container.[Accessed 23 Feb. 2025].</P>
+        <P>developer.mozilla.org. (n.d.). box-shadow - CSS: Cascading Style Sheets | MDN. [online] Available at: https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow. [Accessed 26 Feb. 2025].</P> 
+        
+        <P>developer.mozilla.org. (n.d.). flex-direction - CSS: Cascading Style Sheets | MDN. [online] Available at: https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction.</P> 
+
+        <p> developer.mozilla.org. (n.d.). flex-wrap - CSS: Cascading Style Sheets | MDN. [online] Available at: https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap.[Accessed 6 Mar . 2025].</p>  
+          
+        <P>developer.mozilla.org. (n.d.). grid-template-columns - CSS: Cascading Style Sheets | MDN. [online] Available at: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns..[Accessed 14 Mar. 2025].
+       </P> 
+
+        <P> Elementor. (2023). CSS & HTML Colors: Properties, Codes, Keywords And Names. [online] Available at: https://elementor.com/blog/colors-in-css/.  [Accessed 02 Mar . 2025].</P>
+
+        <P> Embrey, L. (2021). 10+ Hamburger Menu Examples [CSS Only]. [online] Alvaro Trigo’s Blog - Web developing and design. Available at: https://alvarotrigo.com/blog/hamburger-menu-css/.[Accessed 18 Feb. 2025].</P>
+
+        <p>Emmanuel, O. (2017). Understanding Flexbox: Everything you need to know - We’ve moved to freeCodeCamp.org/news - Medium. [online] Medium. Available at: https://medium.com/free-code-camp/understanding-flexbox-everything-you-need-to-know-b4013d4dc9af [Accessed 23 Feb. 2025].</p>
+
+        <p> Freebie Supply. (2018). 25+ CSS & JS Sliders From CodePen 2018 - Freebie Supply. [online] Available at: https://freebiesupply.com/blog/css-js-sliders-from-codepen/ [Accessed 23 Feb. 2025].</p>   
+
+        <p>freeCodeCamp.org (2019). Display mobile responsive menu on a larger browser width. [online] The freeCodeCamp Forum. Available at: https://forum.freecodecamp.org/t/display-mobile-responsive-menu-on-a-larger-browser-width/319206/4 [Accessed 19 Feb. 2025].</p>   
+
+        <P>freeCodeCamp.org (2022). Flex Containers. [online] The freeCodeCamp Forum. Available at: https://forum.freecodecamp.org/t/flex-containers/516098 [Accessed 23 Feb. 2025].</P> 
+
+        <p>Github.com. (2025). Blocked. [online] Available at: https://github.com/citation-style-language/csl-editor/blob/master/css/base.css?bust= [Accessed 23 Feb. 2025].
+        </p>  
+
+         <p>  Hess, J. (2015). Close Slide Out Menu when option is selected. [online] Stack Overflow. Available at: https://stackoverflow.com/questions/30564169/close-slide-out-menu-when-option-is-selected.[Accessed 13 Feb. 2025].</p> 
+
+         <P>Huggingface.co. (2025). smirki/UI_Reasoning_Dataset · Datasets at Hugging Face. [online] Available at: https://huggingface.co/datasets/smirki/UI_Reasoning_Dataset/viewer/default/train [Accessed 14 Mar. 2025].</P>
+
+         <p>Ishika Maurya (2024). Portfolio Website code using Html, CSS and Javascript. [online] Medium. Available at: https://medium.com/@mauryaishika100/portfolio-website-code-using-html-css-and-javascript-f5e1a2343038 [Accessed 23 Feb. 2025].</p>
+
+         <p>Jite-Orimiono, O. (2025). Styling with the CSS box-shadow property - LogRocket Blog. [online] LogRocket Blog. Available at: https://blog.logrocket.com/box-shadow-css/ [Accessed 23 Feb. 2025].</p> 
+         
+
+         <p>Jite-Orimiono, O. (2025). Styling with the CSS box-shadow property - LogRocket Blog. [online] LogRocket Blog. Available at: https://blog.logrocket.com/box-shadow-css/ [Accessed 23 Feb. 2025].</p>
+
+        <p> Mishkahu.com. (2025). Available at: https://mishkahu.com/wp-content/themes/eduma/assets/less/reset-style.less [Accessed 16 Feb. 2025].</p>
+        <p> Nefe Emadamerho-Atori (2024). CSS Hover Effects: 40 Engaging Animations To Try. [online] Prismic.io. Available at: https://prismic.io/blog/css-hover-effects.  [Accessed 04 Mar . 2025].</p>
+        <p>Shecodes.io. (2025). [HTML] - How to change font size and color in HTML? [online] Available at: https://www.shecodes.io/athena/62062-how-to-change-font-size-and-color-in-html [Accessed 23 Feb. 2025].</p>
+        <p>Shecodes.io. (2025). Coding Workshops for Women. [online] Available at: https://www.shecodes.io/palettes [Accessed 23 Feb. 2025].</p>
+
+        <p>streetsoldier (2014). Change hover color on a button with Bootstrap customization. [online] Stack Overflow. Available at: https://stackoverflow.com/questions/25923623/change-hover-color-on-a-button-with-bootstrap-customization. [Accessed 10  Mar. 2025].</p>
+        <p> w3schools (2019). How To Create a Side Navigation Menu. [online] W3schools.com. Available at: https://www.w3schools.com/howto/howto_js_sidenav.asp.[Accessed 12 Feb. 2025].</p>
+        <p> W3schools (2019). Responsive Web Design Media Queries. [online] W3schools.com. Available at: https://www.w3schools.com/css/css_rwd_mediaqueries.asp.  [Accessed 5 Mar. 2025].</p>
+        <p>www.w3schools.com. (n.d.). How To Create a Collapsed Sidebar. [online] Available at: https://www.w3schools.com/howto/howto_js_collapse_sidebar.asp. .[Accessed 15 Mar. 2025]. [Original source: https://studycrumb.com/alphabetizer]</p>
+        </P>
+  
+    </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Robby Amofah. All rights reserved.</p>
+        <div class="social-links">
+            <a href="https://twitter.com" target="_blank"><img src="Twitter.jpg" alt="Twitter"></a>
+            <a href="https://facebook.com" target="_blank"><img src="Facebook.jpeg" alt="Facebook"></a>
+            <a href="https://instagram.com" target="_blank"><img src="Instagram.jpg" alt="Instagram"></a>
+            <a href="https://youtube.com" target="_blank"><img src="YouTube.png" alt="YouTube"></a>
+        </div>
+    </footer>
+    
+     <!-- This code will execute my website JAVASCRIPT: SLIDE-OUT NAV + CLOSE and it mobile responsive -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuToggle = document.getElementById('menu-toggle');
+      const navMenu = document.getElementById('nav-menu');
+      const closeMenuLink = document.getElementById('close-menu-link');
+      
+      // Showing my slide-out menu on mobile
+      menuToggle.addEventListener('click', () => {
+        navMenu.classList.add('active');
+      });
+
+      // Hiding my slide-out menu when "Close" is clicked
+      closeMenuLink.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+      });
+
+      // (Optional or  Closing my menu when any other link is clicked
+      navMenu.querySelectorAll('li:not(.close-menu) a').forEach(link => {
+        link.addEventListener('click', () => {
+          navMenu.classList.remove('active');
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
